@@ -161,6 +161,7 @@ public class IPovGui extends Activity {
 			public void onItemClick(AdapterView parent, View v, int position, long id) {
 				Log.d(TAG, "POS"+position);
 				sendImage(position);
+				
 			}
 		});
 		mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
