@@ -50,7 +50,7 @@ import android.widget.Toast;
 /**
  * This is the main Activity that displays the current chat session.
  */
-public class IPovGui extends Activity {
+public class IPovMainActivity extends Activity {
 	// Debugging
 	private static final String TAG = "iPov";
 	private static final boolean D = true;

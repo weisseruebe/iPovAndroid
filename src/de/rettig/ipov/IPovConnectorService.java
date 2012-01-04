@@ -88,7 +88,7 @@ public class IPovConnectorService {
         mState = state;
 
         // Give the new state to the Handler so the UI Activity can update
-        mHandler.obtainMessage(IPovGui.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
+        mHandler.obtainMessage(IPovMainActivity.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
     }
 
     /**
@@ -174,9 +174,9 @@ public class IPovConnectorService {
         mConnectedThread.start();
 
         // Send the name of the connected device back to the UI Activity
-        Message msg = mHandler.obtainMessage(IPovGui.MESSAGE_DEVICE_NAME);
+        Message msg = mHandler.obtainMessage(IPovMainActivity.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
-        bundle.putString(IPovGui.DEVICE_NAME, device.getName());
+        bundle.putString(IPovMainActivity.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -233,9 +233,9 @@ public class IPovConnectorService {
      */
     private void connectionFailed() {
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(IPovGui.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(IPovMainActivity.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(IPovGui.TOAST, "Unable to connect device");
+        bundle.putString(IPovMainActivity.TOAST, "Unable to connect device");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -248,9 +248,9 @@ public class IPovConnectorService {
      */
     private void connectionLost() {
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(IPovGui.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(IPovMainActivity.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(IPovGui.TOAST, "Device connection was lost");
+        bundle.putString(IPovMainActivity.TOAST, "Device connection was lost");
         msg.setData(bundle);
         mHandler.sendMessage(msg);
 
@@ -465,7 +465,7 @@ public class IPovConnectorService {
                     bytes = mmInStream.read(buffer);
 
                     // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(IPovGui.MESSAGE_READ, bytes, -1, buffer)
+                    mHandler.obtainMessage(IPovMainActivity.MESSAGE_READ, bytes, -1, buffer)
                             .sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
@@ -484,7 +484,7 @@ public class IPovConnectorService {
                 mmOutStream.write(buffer);
 
                 // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(IPovGui.MESSAGE_WRITE, -1, -1, buffer)
+                mHandler.obtainMessage(IPovMainActivity.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);

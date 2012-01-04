@@ -23,7 +23,7 @@
 
     <application android:label="@string/app_name"
                  android:icon="@drawable/app_icon" >
-        <activity android:name="de.rettig.ipov.IPovGui"
+        <activity android:name="de.rettig.ipov.IPovMainActivity"
                   android:label="@string/app_name"
                   android:configChanges="orientation|keyboardHidden">
             <intent-filter>
